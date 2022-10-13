@@ -1,0 +1,162 @@
+@font-face {
+    font-family: SaralaB;
+    src: url('./font/Sarala-Bold.ttf');
+}
+
+:root {
+    /*Colors*/
+    --color-text: rgba(255, 255, 255, 0.65);
+    --bg-gradient: linear-gradient(180deg, #394253 0%, #181C27 147.23%);
+    --color-shadow-light: rgba(72, 80, 99, 0.26);
+    --color-shadow-dark: #262C37;
+    --gradient-element: rgba(255, 255, 255, 0.1);
+
+    /*Shadow*/
+    --shadow-box: -10px -10px 20px var(--color-shadow-light), 
+                  10px 10px 20px var(--color-shadow-dark);
+    --inner-shadow-box: inset -5px -5px 10px var(--color-shadow-light), 
+                        inset 5px 5px 10px var(--color-shadow-dark);
+                        
+    /*Variables*/
+    --height: 76px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    outline: none;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: SaralaB, sans-serif;
+    font-weight: 700;
+    height: 100vh;
+    color: var(--color-text);
+    box-sizing: inherit;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-gradient) no-repeat;
+    height: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+/*Currency converter*/
+
+.converter {
+    display: flex;
+    flex-direction: column;
+}
+
+.selectbox__selected {
+    border-radius: 0px 12px 12px 0px;
+}
+
+.converter__item {
+    display: flex;
+}
+
+.converter__item:not(:last-child) {
+    margin-bottom: 38px;
+}
+.converter__input {
+    font-size: 36px;
+    line-height: 1.3;
+    height: var(--height);
+    padding: 0 26px;
+    color: var(--color-text);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px 0px 0px 12px;
+    box-shadow: var(--inner-shadow-box);
+}
+
+.selectbox {
+    position: relative;
+}
+
+.selectbox__selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--height);
+    width: var(--height);
+    box-shadow: var(--shadow-box);
+    cursor: pointer;
+  }
+
+.selectbox__arrow {
+    display: inline-block;
+    border: solid var(--color-text);
+    border-width: 0 3px 3px 0;
+    margin-left: 8px;
+    padding: 4px;
+    transform: rotate(45deg);
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+
+.selectbox__list-wrap {
+    position: absolute;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: var(--shadow-box);
+    width: var(--height);
+}
+
+.selectbox__list {
+    position: relative;
+    max-height: 0;
+    text-align: center;
+    background: #333c4b;
+    z-index: 1;
+    transition: z-index 0s 0.5s;
+    transition: 0.5s ease;
+}
+
+li {
+    padding: 8px 0;
+}
+
+.selectbox_opened .selectbox__list{
+    max-height: 500px;
+    transition: z-index 0s 0s;
+    z-index: 2;
+    transition: 0.5s ease;
+}
+
+.selectbox_opened .selectbox__arrow {
+    transform: rotate(-135deg);
+}
+
+li {
+    cursor: pointer;
+}
+
+.selectbox_opened li.active {
+    cursor: default;
+    pointer-events: none;
+}
+
+.selectbox_opened li.active,
+.selectbox_opened li:hover {
+    background: var(--gradient-element);
+}
+
+ 
