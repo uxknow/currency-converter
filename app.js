@@ -12,6 +12,7 @@ const converterItems = document.querySelectorAll('.converter__item');
 }*/
 
 const rate = await getCurrency();
+console.log(rate)
 
 const selectedCurrency = ['UAH', 'USD'];
 const values = [0, 0];
@@ -127,7 +128,11 @@ function currencyCalculate(values,selectedCurrency,rate, idxValue) {
   let result = 0;
   const currentValue = values[idxValue] * rate[selectedCurrency[idxValue]];
   result = Math.round((currentValue/rate[selectedCurrency[!idxValue ? 1 : 0]])*100)/100;
-  values[idxValue ? 0 : 1] = result;
+  values[!idxValue ? 1 : 0] = result;
 
   return result;
 }
+
+
+
+
