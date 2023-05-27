@@ -3,16 +3,7 @@ import { getCurrency } from "./currancy.js";
 const selectboxes = document.querySelectorAll('.selectbox');
 const converterItems = document.querySelectorAll('.converter__item');
 
-/*const rate = {
-  UAH: 1,
-  USD: 42,
-  EUR: 45,
-  PLN: 7,
-  GBP: 48
-}*/
-
 const rate = await getCurrency();
-console.log(rate)
 
 const selectedCurrency = ['UAH', 'USD'];
 const values = [0, 0];
@@ -57,18 +48,6 @@ selectboxes.forEach(selectbox =>  {
   const selectboxSelected = selectbox.querySelector('.selectbox__selected');
   selectboxSelected.addEventListener('click', showSelect);
 
-
-  /*selectboxSelected.addEventListener('click', () => {
-    if (selectbox.classList.contains('selectbox_opened')) {
-      selectbox.classList.remove('selectbox_opened');
-    } else {
-      for (let select of selectboxes) {
-        select.classList.remove('selectbox_opened');
-      }
-
-      selectbox.classList.add('selectbox_opened');
-    } 
-  })*/
 });
 
 
@@ -100,8 +79,6 @@ selectboxes.forEach((selectbox, converterItemIdx) => selectbox.addEventListener(
 
 //Отслеживаем изменения в input
 
-//const reg = /^\d+$/;
-
 function inputValue() {
 
   converterItems.forEach((itemBlock, converterItemIdx) => {
@@ -110,7 +87,7 @@ function inputValue() {
   input.addEventListener('input', (e) => {
     const userData = e.target.value;
 
-    if(isNaN(userData)/*!reg.test(userData) || userData === ''*/) {
+    if(isNaN(userData)) {
       input.value = values[converterItemIdx];
     } else {
       values[converterItemIdx] = userData;
